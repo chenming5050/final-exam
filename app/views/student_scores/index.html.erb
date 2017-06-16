@@ -1,31 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="container"> 
+  <div>
+    <pre> 
+      <span style="font-size: 20px;"><b>國立台北超強大學</b></span><span>       <b>成績單</b></span>
+    </pre>   
+  </div>
+  <p id="notice"><%= notice %></p>
 
-<h1>Student Scores</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Stu no</th>
-      <th>Score</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @student_scores.each do |student_score| %>
+  <h1><b>成績列表</b></h1>
+  <%= link_to '新增學生', new_student_score_path, class: "btn btn-success" %>
+  <hr>
+  <p>分數級別說明：90分以上 S 級 / 80 ~ 89：A 級 / 70 ~ 79：B 級 / 60 ~ 69：C 級 / 未滿60：D 級 </p>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= student_score.name %></td>
-        <td><%= student_score.stu_no %></td>
-        <td><%= student_score.score %></td>
-        <td><%= link_to 'Show', student_score %></td>
-        <td><%= link_to 'Edit', edit_student_score_path(student_score) %></td>
-        <td><%= link_to 'Destroy', student_score, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>姓名</th>
+        <th>學號</th>
+        <th>分數</th>
+        <th colspan="3">處理</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @student_scores.each do |student_score| %>
+        <tr>
+          <td><%= student_score.name %></td>
+          <td><%= student_score.stu_no %></td>
+          <td><%= student_score.score %></td>
+          <td><%= link_to '編輯', edit_student_score_path(student_score), class: "btn btn-success btn-xs" %></td>
+          <td><%= link_to '刪除', student_score, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Student Score', new_student_score_path %>
+  <br>    
+</div>
+
+
+
